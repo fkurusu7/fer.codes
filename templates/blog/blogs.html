@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex bd-highlight mb-3">
+  <div class="p-2 flex-grow-1 bd-highlight text-center">
+    <h3 class="pb-3">All Posts</h3>
+  </div>
+  <div class="p-2 bd-highlight">
+    <form class="form-inline my-2 my-lg-0 clear-fix float-right mr-3">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search Post" aria-label="Search">
+      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+    </form>    
+  </div>
+</div>
+
+<div class="row">
+  <!-- List of Blogs -->
+  <div class="col-sm-9">
+    <div class="accordion" id="accordionExample">
+
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            <button class="text-info btn btn-link btn-block text-left text-decoration-none" type="button"
+              data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Post # 1
+            </button>
+          </h2>
+        </div>
+
+        <!-- REMEMBER TO CHANGE THE ID here and in data-target in the button above  
+             AND leave show class for the first post and remove it for the following posts
+        -->
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
+            officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3
+            wolf moon t.</p>
+            <div class="row">
+              <div class="col-sm-10">
+                ADD IMAGE
+              </div>
+              <div class="col-sm-2">
+                <a href="{% url 'blog' 1 %}" class="float-right btn btn-outline-dark btn-md" role="button">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- END CARD-->
+
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            <button class="text-info btn btn-link btn-block text-left text-decoration-none" type="button"
+              data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne">
+              Post # 1
+            </button>
+          </h2>
+        </div>
+
+        <!-- REMEMBER TO CHANGE THE ID here and in data-target in the button above  
+             AND leave show class for the first post and remove it for the following posts
+        -->
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
+            officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3
+            wolf moon t.</p>
+            <div class="row">
+              <div class="col-sm-10">
+                ADD IMAGE
+              </div>
+              <div class="col-sm-2">
+                <a href="{% url 'blog' 1 %}" class="float-right btn btn-outline-dark btn-md" role="button">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- END CARD-->
+
+    </div> <!-- END Accordion -->
+  </div> <!-- END List of Blogs -->
+  <!-- ADMIN(implement later) / ADD button / Tags-->
+  <div class="col-sm-3">
+    <a href="#" class="mr-4 float-right btn btn-dark btn-md" role="button">+ Add Post</a>
+  </div>
+</div>
+
+{% endblock %}

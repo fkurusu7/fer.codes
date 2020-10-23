@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- TITLE and SEARCH BOX-->
+
+<div class="d-flex bd-highlight mb-3">
+    <div class="p-2 flex-grow-1 bd-highlight text-center">
+        <h3 class="pb-3">Post Title</h3>
+    </div>
+    <div class="p-2 bd-highlight">
+        <form class="form-inline my-2 my-lg-0 clear-fix float-right mr-3">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Post" aria-label="Search">
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Blog -->
+    <div class="col-sm-9">
+      BLog info
+    </div> <!-- END Blog -->
+    <!-- ADMIN(implement later) / ADD button / Tags-->
+    <div class="col-sm-3">
+      <a href="#" class="mr-4 float-right btn btn-dark btn-md" role="button">+ Add Post</a>
+    </div>
+  </div>
+  
+{% endblock %}
