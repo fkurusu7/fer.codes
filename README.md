@@ -80,3 +80,16 @@ urlpatterns = [
         list_perpage = 25
 
     admin.site.register(Listing, ListingAdmin
+
+## Edit VSCODE settings
+Install pip install pylint-django
+{
+    "editor.fontSize": 16,
+    "editor.wordWrap": "on",
+    "editor.tabSize": 2,
+    "explorer.confirmDragAndDrop": false,
+    "python.linting.pylintArgs": [
+        "--load-plugins=pylint_django"
+    ],   <=== Remove error marks in Model.objects
+    "terminal.integrated.fontSize": 14
+}
