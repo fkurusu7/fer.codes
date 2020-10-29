@@ -22,13 +22,13 @@ def add_post(request):
         else:
             status = request.POST['status']
         description = request.POST['description']
-        main_photo = request.POST['main_photo']
-        photo_1 = request.POST['photo_1']
-        photo_2 = request.POST['photo_2']
-        photo_3 = request.POST['photo_3']
-        photo_4 = request.POST['photo_4']
-        photo_5 = request.POST['photo_5']
-        photo_6 = request.POST['photo_6']
+        main_photo = request.FILES['main_photo']
+        photo_1 = request.FILES['photo_1']
+        photo_2 = request.FILES['photo_2']
+        photo_3 = request.FILES['photo_3']
+        photo_4 = request.FILES['photo_4']
+        photo_5 = request.FILES['photo_5']
+        photo_6 = request.FILES['photo_6']
         
         errors = ''
         if Post.objects.filter(title=title).exists():
