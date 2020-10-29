@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<!-- Alerts -->
+{% include 'partials/_alerts.html' %}
 <div class="d-flex bd-highlight mb-3">
   <div class="p-2 flex-grow-1 bd-highlight text-center">
     <h3 class="pb-3">All Posts</h3>
@@ -83,7 +85,7 @@
   </div> <!-- END List of Blogs -->
   <!-- ADMIN(implement later) / ADD button / Tags-->
   <div class="col-sm-3">
-    <a href="{% url 'add_blog' %}" class="mr-4 float-right btn btn-dark btn-md" role="button">+ Add Post</a>
+    <a href="{% url 'add_post' %}" class="mr-4 float-right btn btn-dark btn-md" role="button">+ Add Post</a>
   </div>
 </div>
 
