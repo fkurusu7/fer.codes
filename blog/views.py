@@ -1,12 +1,16 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 
 from .models import Post
 
 
 def posts(request):
-    posts = Post.objects.all()
-    context = {'posts': posts}
+    posts = Post.objects.filter(status='published')
+    paginator = Paginator(posts, 10)
+    page = request.GET.get('page')
+    paged_posts = paginator.get_page(page)
+    context = {'posts': paged_posts}
     return render(request, 'blog/posts.html', context)
 
 
