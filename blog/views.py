@@ -15,7 +15,9 @@ def posts(request):
 
 
 def post_detail(request, post_id):
-    return render(request, 'blog/post_detail.html', {})
+    post = get_object_or_404(Post, pk=post_id)
+    context = { 'post': post}
+    return render(request, 'blog/post_detail.html', context)
 
 
 def add_post(request):
@@ -27,32 +29,40 @@ def add_post(request):
             status = 'draft'
         else:
             status = request.POST['status']
+
         description = request.POST['description']
+
         main_photo = request.FILES['main_photo']
-        if request.POST.get('photo_1'):
-            photo_1 = request.FILES['photo_1']
-        else:
+
+        if not request.FILES.get('photo_1'):
             photo_1 = ''
-        if request.POST.get('photo_2'):
-            photo_2 = request.FILES['photo_2']
         else:
+            photo_1 = request.FILES['photo_1']
+
+        if not request.FILES.get('photo_2'):
             photo_2 = ''
-        if request.POST.get('photo_3'):
-            photo_3 = request.FILES['photo_3']
         else:
+            photo_2 = request.FILES['photo_2']
+
+        if not request.FILES.get('photo_3'):
             photo_3 = ''
-        if request.POST.get('photo_4'):
-            photo_4 = request.FILES['photo_4']
         else:
+            photo_3 = request.FILES['photo_3']
+
+        if not request.FILES.get('photo_4'):
             photo_4 = ''
-        if request.POST.get('photo_5'):
-            photo_5 = request.FILES['photo_5']
         else:
+            photo_4 = request.FILES['photo_4']
+
+        if not request.FILES.get('photo_5'):
             photo_5 = ''
-        if request.POST.get('photo_6'):
-            photo_6 = request.FILES['photo_6']
         else:
+            photo_5 = request.FILES['photo_5']
+
+        if not request.FILES.get('photo_6'):
             photo_6 = ''
+        else:
+            photo_6 = request.FILES['photo_6']
         
         errors = ''
         if Post.objects.filter(title=title).exists():

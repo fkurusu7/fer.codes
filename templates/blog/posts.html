@@ -26,9 +26,9 @@
 
       {% for post in posts %}
         <div class="card">
-          <div class="card-header" id="heading{{ post.id }}">
+          <div class="card-header bg-dark" id="heading{{ post.id }}">
             <h2 class="mb-0">
-              <button class="text-info btn btn-link btn-block text-left text-decoration-none" type="button"
+              <button class="text-warning btn btn-link btn-block text-left text-decoration-none" type="button"
                 data-toggle="collapse" data-target="#collapse{{ post.id }}" aria-expanded="false" aria-controls="collapse{{ post.id }}">
                 {{ post.title }} 
                 <span class="float-right">
@@ -45,7 +45,7 @@
                   <p>{{ post.summary }}</p>
                 </div>
                 <div class="col-sm-2">
-                  <a href="{% url 'post' post.id %}" class="float-right btn btn-outline-dark btn-md" role="button"><i class="fab fa-readme"></i></a>
+                  <a href="{% url 'post' post.id %}" class="float-right btn btn-warning btn-md text-dark" role="button"><i class="fab fa-readme"></i>  Read more </a>
                 </div>
               </div>
             </div>

@@ -1,30 +1,46 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block content %}
+<!-- TODO: handle in the future MarkDown and HTML
+https://hakibenita.com/django-markdown
+-->
 
 <!-- TITLE and SEARCH BOX-->
+<div class="row">
+  <!-- Blog Detail-->
+  <div class="col-sm-9">
 
-<div class="d-flex bd-highlight mb-3">
-    <div class="p-2 flex-grow-1 bd-highlight text-center">
-        <h3 class="pb-3">Post Title</h3>
+    <div class="card text-center mb-5">
+      <div class="card-header bg-dark text-white">
+        <small class="text-light">{{ post.updated | date:"D d M Y" }}</small>
+        <h3 class="pt-1 pb-3">{{ post.title }}</h3>
+      </div>
+      <div class="card-body">
+        <figure class="figure">
+          <img src="{{ post.main_photo.url }}" class="figure-img img-fluid rounded" alt="...">
+          <figcaption class="figure-caption">{{ post.summary }}</figcaption>
+        </figure>
+        <p class="card-text text-justify py-3">{{ post.description }}</p>
+        <a href="{% url 'posts' %}" class="btn bg-info text-white">Latest Posts</a>
+      </div>
+      <div class="card-footer text-muted">
+        CONTACT
+      </div>
     </div>
-    <div class="p-2 bd-highlight">
-        <form class="form-inline my-2 my-lg-0 clear-fix float-right mr-3">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search Post" aria-label="Search">
-            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
+
+  </div> <!-- END Blog Detail -->
+
+  <!-- ADMIN(implement later) / ADD button / Tags-->
+  <div class="col-sm-3">
+    <form class="form-inline my-2 my-lg-0 clear-fix float-right mr-3">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search Post" aria-label="Search">
+      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <a href="#" class="mr-4 float-right btn btn-dark btn-md" role="button">+ Add Post</a>
+  </div>
 </div>
 
-<div class="row">
-    <!-- Blog -->
-    <div class="col-sm-9">
-      BLog info
-    </div> <!-- END Blog -->
-    <!-- ADMIN(implement later) / ADD button / Tags-->
-    <div class="col-sm-3">
-      <a href="#" class="mr-4 float-right btn btn-dark btn-md" role="button">+ Add Post</a>
-    </div>
-  </div>
-  
 {% endblock %}
