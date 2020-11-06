@@ -1,8 +1,10 @@
+# Django
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 
-from .models import Post
+# Models
+from .models import Post, Category
 
 
 def posts(request):
@@ -16,11 +18,12 @@ def posts(request):
 
 def post_detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    context = { 'post': post}
+    context = { 'post': post, 'categories': post.categories }
     return render(request, 'blog/post_detail.html', context)
 
 
 def add_post(request):
+    print(request.POST)
     if request.method == 'POST':
         # Get form values
         title = request.POST['title']
@@ -32,6 +35,28 @@ def add_post(request):
 
         description = request.POST['description']
 
+        # Categories from CHECKBOXES
+        if not request.POST.get('category_checkbox'):
+            categories_checkbox = []
+        else:
+            categories_checkbox = []
+            categories = request.POST.getlist('category_checkbox')
+            for category in categories:
+                cat = Category.objects.get(name= category)
+                categories_checkbox.append(cat)
+        
+        # Categories from TEXTBOX commas
+        if not request.POST.get('categories_comma'):
+            categories_comma = []
+        else:
+            categories_comma = []
+            categories = request.POST['categories_comma'].split(',')
+            for category in categories:
+                cat, created = Category.objects.get_or_create(name= category.strip())
+                categories_comma.append(cat)
+        categories = categories_checkbox + categories_comma 
+
+        # Photos
         main_photo = request.FILES['main_photo']
 
         if not request.FILES.get('photo_1'):
@@ -76,6 +101,8 @@ def add_post(request):
             post = Post(title= title, description= description, summary= summary, status= status, main_photo=main_photo, photo_1= photo_1, photo_2= photo_2, photo_3= photo_3, photo_4= photo_4, photo_5= photo_5, photo_6= photo_6)
 
             post.save()
+            post.categories.add(*categories)
+
             messages.success(request, 'Post added.')
             return redirect('posts')
         else:
@@ -83,5 +110,19 @@ def add_post(request):
             return redirect('add_post')
             
     else:
-        return render(request, 'blog/add_post.html')
+        categories = Category.objects.all()
+        context = { 'categories': categories }
+        return render(request, 'blog/add_post.html', context)
 
+"""
+p = Post(title= 'many to many', description= 'description', summary= 'summary', status= 'draft', main_photo= '', photo_1= '', photo_2= '', photo_3= '', photo_4= '', photo_5= '', photo_6= '')
+p.save()
+c = Category(name= 'python')
+cp = Category(name= 'django')
+cp.save()
+p.categories.add(cp)
+c.post_set.all()
+p.categories.create(name='blog')
+# p.categories.all()
+<QuerySet [<Category: blog>, <Category: django>, <Category: python>]>
+"""

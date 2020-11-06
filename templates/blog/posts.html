@@ -20,6 +20,7 @@
 </div>
 
 <!-- List of Posts -->
+<!-- https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#std:templatefilter-date -->
 <div class="row">
   <div class="col-sm-9">
     <div class="accordion" id="accordionPosts">
@@ -30,7 +31,7 @@
             <h2 class="mb-0">
               <button class="text-warning btn btn-link btn-block text-left text-decoration-none" type="button"
                 data-toggle="collapse" data-target="#collapse{{ post.id }}" aria-expanded="false" aria-controls="collapse{{ post.id }}">
-                {{ post.title }} 
+                {{ post.title|capfirst }} 
                 <span class="float-right">
                   <small class="text-muted">Posted {{ post.created | naturaltime }}  </small>
                   <i class="fas fa-plus-circle"></i>
@@ -72,13 +73,13 @@
         <!-- Previous -->
         {% if posts.has_previous %}
           <li class="page-item">
-            <a href="?page={{ posts.previous_page_number }}" class="page-link">
+            <a href="?page={{ posts.previous_page_number }}" class="page-link text-warning bg-dark">
               <i class="fas fa-angle-double-left"></i>
             </a>
           </li>
         {% else %}
           <li class="page-item disabled">
-            <a href="" class="page-link">
+            <a href="" class="page-link text-light bg-dark">
               <i class="fas fa-angle-double-left"></i>
             </a>
           </li>
@@ -87,11 +88,11 @@
         {% for i in posts.paginator.page_range %}
           {% if posts.number == i %}
             <li class="page-item active">
-              <a href="#" class="page-link">{{ i }}</a>
+              <a href="#" class="page-link text-warning bg-dark">{{ i }}</a>
             </li>
           {% else %}
             <li class="page-item">
-              <a href="?page={{ i }}" class="page-link">
+              <a href="?page={{ i }}" class="page-link text-light bg-dark">
                 {{ i }}
               </a>
             </li>
@@ -100,13 +101,13 @@
         <!-- Next -->
         {% if posts.has_next %}
           <li class="page-item">
-            <a href="?page={{ posts.next_page_number }}" class="page-link">
+            <a href="?page={{ posts.next_page_number }}" class="page-link text-warning bg-dark">
               <i class="fas fa-angle-double-right"></i>
             </a>
           </li>
         {% else %}
           <li class="page-item disabled">
-            <a href="" class="page-link">
+            <a href="" class="page-link text-light bg-dark">
               <i class="fas fa-angle-double-right"></i>
             </a>
           </li>

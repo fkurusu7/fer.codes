@@ -38,11 +38,36 @@
         </div>
         <!-- END Summary & Published -->
 
+        <!-- Categories -->
+        <div class="row">
+          <!-- Category TextBox -->
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="summary">Categories <small class="text-muted">  (Add new categories separated by commas or pick one or more from the checkboxes below.)</small></label>
+              <!-- if categories is empty put the required element in the input otherwise the checkboxes should be required-->
+              <input type="text" name="categories_comma" class="form-control">
+            </div>
+          </div>
+        </div>
+        <!-- Category CheckBox -->
+        <div class="row">
+          <div class="col-md-12">
+            {% for category in categories %}
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ category.id }}" name="category_checkbox" value="{{ category.name }}">
+                <label class="form-check-label" for="inlineCheckbox{{ category.id }}">{{ category.name }}</label>
+              </div>
+            {% endfor %}
+          </div>
+          
+        </div>
+        <!-- END Categories -->
+
         <!-- Photos/Pics -->
 
         <!-- Main Photo -->
         <div class="container">
-          <div class="row my-2 text-center">
+          <div class="row mb-2 mt-4 text-center">
             <div class="col-md-12 my-2">
               <label for="main_photo">
                 <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i> Main Photo
