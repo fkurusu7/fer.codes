@@ -35,59 +35,13 @@ def add_post(request):
 
         description = request.POST['description']
 
-        # Categories from CHECKBOXES
-        if not request.POST.get('category_checkbox'):
-            categories_checkbox = []
-        else:
-            categories_checkbox = []
-            categories = request.POST.getlist('category_checkbox')
-            for category in categories:
-                cat = Category.objects.get(name= category)
-                categories_checkbox.append(cat)
-        
-        # Categories from TEXTBOX commas
-        if not request.POST.get('categories_comma'):
-            categories_comma = []
-        else:
-            categories_comma = []
-            categories = request.POST['categories_comma'].split(',')
-            for category in categories:
-                cat, created = Category.objects.get_or_create(name= category.strip())
-                categories_comma.append(cat)
-        categories = categories_checkbox + categories_comma 
+        # Categories
+        categories = get_categories(request) 
 
-        # Photos
+        # Main Photo
         main_photo = request.FILES['main_photo']
-
-        if not request.FILES.get('photo_1'):
-            photo_1 = ''
-        else:
-            photo_1 = request.FILES['photo_1']
-
-        if not request.FILES.get('photo_2'):
-            photo_2 = ''
-        else:
-            photo_2 = request.FILES['photo_2']
-
-        if not request.FILES.get('photo_3'):
-            photo_3 = ''
-        else:
-            photo_3 = request.FILES['photo_3']
-
-        if not request.FILES.get('photo_4'):
-            photo_4 = ''
-        else:
-            photo_4 = request.FILES['photo_4']
-
-        if not request.FILES.get('photo_5'):
-            photo_5 = ''
-        else:
-            photo_5 = request.FILES['photo_5']
-
-        if not request.FILES.get('photo_6'):
-            photo_6 = ''
-        else:
-            photo_6 = request.FILES['photo_6']
+        # Opt Photos
+        photo_1, photo_2, photo_3, photo_4, photo_5, photo_6 = get_opt_photos(request)
         
         errors = ''
         if Post.objects.filter(title=title).exists():
@@ -99,30 +53,73 @@ def add_post(request):
 
         if not errors:
             post = Post(title= title, description= description, summary= summary, status= status, main_photo=main_photo, photo_1= photo_1, photo_2= photo_2, photo_3= photo_3, photo_4= photo_4, photo_5= photo_5, photo_6= photo_6)
-
             post.save()
             post.categories.add(*categories)
 
             messages.success(request, 'Post added.')
             return redirect('posts')
+
         else:
             messages.error(request, errors)
             return redirect('add_post')
-            
     else:
         categories = Category.objects.all()
         context = { 'categories': categories }
         return render(request, 'blog/add_post.html', context)
 
-"""
-p = Post(title= 'many to many', description= 'description', summary= 'summary', status= 'draft', main_photo= '', photo_1= '', photo_2= '', photo_3= '', photo_4= '', photo_5= '', photo_6= '')
-p.save()
-c = Category(name= 'python')
-cp = Category(name= 'django')
-cp.save()
-p.categories.add(cp)
-c.post_set.all()
-p.categories.create(name='blog')
-# p.categories.all()
-<QuerySet [<Category: blog>, <Category: django>, <Category: python>]>
-"""
+def get_opt_photos(request):
+    if not request.FILES.get('photo_1'):
+        photo_1 = ''
+    else:
+        photo_1 = request.FILES['photo_1']
+
+    if not request.FILES.get('photo_2'):
+        photo_2 = ''
+    else:
+        photo_2 = request.FILES['photo_2']
+
+    if not request.FILES.get('photo_3'):
+        photo_3 = ''
+    else:
+        photo_3 = request.FILES['photo_3']
+
+    if not request.FILES.get('photo_4'):
+        photo_4 = ''
+    else:
+        photo_4 = request.FILES['photo_4']
+
+    if not request.FILES.get('photo_5'):
+        photo_5 = ''
+    else:
+        photo_5 = request.FILES['photo_5']
+
+    if not request.FILES.get('photo_6'):
+        photo_6 = ''
+    else:
+        photo_6 = request.FILES['photo_6']
+
+    return photo_1, photo_2, photo_3, photo_4, photo_5, photo_6
+
+def get_categories(request):
+    # Categories from CHECKBOXES
+    if not request.POST.get('category_checkbox'):
+        categories_checkbox = []
+    else:
+        categories_checkbox = []
+        categories = request.POST.getlist('category_checkbox')
+        for category in categories:
+            cat = Category.objects.get(name= category)
+            categories_checkbox.append(cat)
+
+    # Categories from TEXTBOX commas
+    if not request.POST.get('categories_comma'):
+        categories_comma = []
+    else:
+        categories_comma = []
+        categories = request.POST['categories_comma'].split(',')
+        for category in categories:
+            cat, created = Category.objects.get_or_create(name= category.strip())
+            categories_comma.append(cat)
+
+    categories = categories_checkbox + categories_comma 
+    return categories
