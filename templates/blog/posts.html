@@ -31,7 +31,7 @@
             <h2 class="mb-0">
               <button class="text-warning btn btn-link btn-block text-left text-decoration-none" type="button"
                 data-toggle="collapse" data-target="#collapse{{ post.id }}" aria-expanded="false" aria-controls="collapse{{ post.id }}">
-                {{ post.title|capfirst }} 
+                {{ post.title | capfirst }} 
                 <span class="float-right">
                   <small class="text-muted">Posted {{ post.created | naturaltime }}  </small>
                   <i class="fas fa-plus-circle"></i>
@@ -60,8 +60,7 @@
 
   <!-- ADMIN(implement later) / ADD button / Tags-->
   <div class="col-sm-3">
-    <a href="{% url 'add_post' %}" class="mr-4 float-right btn btn-dark btn-md" role="button"><i class="fas fa-plus-circle"></i> Add Post</a>
-    <!-- Add TAGS -->
+    {% include 'partials/_sides.html' %}
   </div>
 </div>
 

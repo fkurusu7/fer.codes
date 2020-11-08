@@ -12,13 +12,16 @@ def posts(request):
     paginator = Paginator(posts, 10)
     page = request.GET.get('page')
     paged_posts = paginator.get_page(page)
-    context = {'posts': paged_posts}
+
+    categories = Category.objects.all()
+    context = {'posts': paged_posts, 'categories': categories }
     return render(request, 'blog/posts.html', context)
 
 
 def post_detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    context = { 'post': post, 'categories': post.categories }
+    categories = Category.objects.all()
+    context = { 'post': post, 'categories': categories }
     return render(request, 'blog/post_detail.html', context)
 
 
@@ -101,6 +104,7 @@ def get_opt_photos(request):
     return photo_1, photo_2, photo_3, photo_4, photo_5, photo_6
 
 def get_categories(request):
+    # https://docs.djangoproject.com/en/3.1/topics/db/examples/many_to_many/
     # Categories from CHECKBOXES
     if not request.POST.get('category_checkbox'):
         categories_checkbox = []
