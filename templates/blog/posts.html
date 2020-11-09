@@ -3,116 +3,115 @@
 {% load humanize %}
 {% block content %}
 
-<!-- Alerts -->
-{% include 'partials/_alerts.html' %}
+<section class="container">
 
-<!-- Title and Search functionality -->
-<div class="d-flex bd-highlight mb-3">
-  <div class="p-2 flex-grow-1 bd-highlight text-center">
-    <h3 class="pb-3">Latest Posts</h3>
+
+  <!-- Alerts -->
+  {% include 'partials/_alerts.html' %}
+
+  <!-- Title -->
+  <div class="row">
+    <h3 class="pb-3 mx-auto">Latest Posts</h3>
   </div>
-  <div class="p-2 bd-highlight">
-    <form class="form-inline my-2 my-lg-0 clear-fix float-right mr-3" action="">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search Post" aria-label="Search">
-      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</div>
 
-<!-- List of Posts -->
-<!-- https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#std:templatefilter-date -->
-<div class="row">
-  <div class="col-sm-9">
-    <div class="accordion" id="accordionPosts">
+  <!-- List of Posts -->
+  <!-- https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#std:templatefilter-date -->
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="accordion" id="accordionPosts">
 
-      {% for post in posts %}
+        {% for post in posts %}
         <div class="card">
           <div class="card-header bg-dark" id="heading{{ post.id }}">
             <h2 class="mb-0">
               <button class="text-warning btn btn-link btn-block text-left text-decoration-none" type="button"
-                data-toggle="collapse" data-target="#collapse{{ post.id }}" aria-expanded="false" aria-controls="collapse{{ post.id }}">
-                {{ post.title | capfirst }} 
+                data-toggle="collapse" data-target="#collapse{{ post.id }}" aria-expanded="false"
+                aria-controls="collapse{{ post.id }}">
+                {{ post.title | capfirst }}
                 <span class="float-right">
-                  <small class="text-muted">Posted {{ post.created | naturaltime }}  </small>
+                  <small class="text-muted">Posted {{ post.created | naturaltime }} </small>
                   <i class="fas fa-plus-circle"></i>
                 </span>
               </button>
             </h2>
           </div>
-          <div id="collapse{{ post.id }}" class="collapse" aria-labelledby="heading{{ post.id }}" data-parent="#accordionPosts">
-            <div class="card-body">
+          <div id="collapse{{ post.id }}" class="collapse" aria-labelledby="heading{{ post.id }}"
+            data-parent="#accordionPosts">
+            <div class="card-body border">
               <div class="row">
                 <div class="col-sm-10">
                   <p>{{ post.summary }}</p>
                 </div>
                 <div class="col-sm-2">
-                  <a href="{% url 'post' post.id %}" class="float-right btn btn-warning btn-md text-dark" role="button"><i class="fab fa-readme"></i>  Read more </a>
+                  <a href="{% url 'post' post.id %}" class="float-right btn btn-warning btn-md text-dark"
+                    role="button"><i class="fab fa-readme"></i> Read more </a>
                 </div>
               </div>
             </div>
           </div>
         </div> <!-- END CARD-->
 
-      {% endfor %}
+        {% endfor %}
 
-    </div> <!-- END Accordion -->
-  </div> <!-- END List of Posts -->
+      </div> <!-- END Accordion -->
+    </div> <!-- END List of Posts -->
 
-  <!-- ADMIN(implement later) / ADD button / Tags-->
-  <div class="col-sm-3">
-    {% include 'partials/_sides.html' %}
+    <!-- ADMIN(implement later) / ADD button / Tags-->
+    <div class="col-sm-3">
+      {% include 'partials/_sides.html' %}
+    </div>
   </div>
-</div>
 
-<!-- PAGINATION -->
-<div class="row mt-5">
-  <div class="col-sm-12">
-    {% if posts.has_other_pages %}
+  <!-- PAGINATION -->
+  <div class="row">
+    <div class="col-sm-12 mt-3">
+      {% if posts.has_other_pages %}
       <ul class="pagination">
         <!-- Previous -->
         {% if posts.has_previous %}
-          <li class="page-item">
-            <a href="?page={{ posts.previous_page_number }}" class="page-link text-warning bg-dark">
-              <i class="fas fa-angle-double-left"></i>
-            </a>
-          </li>
+        <li class="page-item">
+          <a href="?page={{ posts.previous_page_number }}" class="page-link text-warning bg-dark">
+            <i class="fas fa-angle-double-left"></i>
+          </a>
+        </li>
         {% else %}
-          <li class="page-item disabled">
-            <a href="" class="page-link text-light bg-dark">
-              <i class="fas fa-angle-double-left"></i>
-            </a>
-          </li>
+        <li class="page-item disabled">
+          <a href="" class="page-link text-light bg-dark">
+            <i class="fas fa-angle-double-left"></i>
+          </a>
+        </li>
         {% endif %}
         <!-- Pages -->
         {% for i in posts.paginator.page_range %}
-          {% if posts.number == i %}
-            <li class="page-item active">
-              <a href="#" class="page-link text-warning bg-dark">{{ i }}</a>
-            </li>
-          {% else %}
-            <li class="page-item">
-              <a href="?page={{ i }}" class="page-link text-light bg-dark">
-                {{ i }}
-              </a>
-            </li>
-          {% endif %}
+        {% if posts.number == i %}
+        <li class="page-item active">
+          <a href="#" class="page-link text-warning bg-dark">{{ i }}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a href="?page={{ i }}" class="page-link text-light bg-dark">
+            {{ i }}
+          </a>
+        </li>
+        {% endif %}
         {% endfor %}
         <!-- Next -->
         {% if posts.has_next %}
-          <li class="page-item">
-            <a href="?page={{ posts.next_page_number }}" class="page-link text-warning bg-dark">
-              <i class="fas fa-angle-double-right"></i>
-            </a>
-          </li>
+        <li class="page-item">
+          <a href="?page={{ posts.next_page_number }}" class="page-link text-warning bg-dark">
+            <i class="fas fa-angle-double-right"></i>
+          </a>
+        </li>
         {% else %}
-          <li class="page-item disabled">
-            <a href="" class="page-link text-light bg-dark">
-              <i class="fas fa-angle-double-right"></i>
-            </a>
-          </li>
+        <li class="page-item disabled">
+          <a href="" class="page-link text-light bg-dark">
+            <i class="fas fa-angle-double-right"></i>
+          </a>
+        </li>
         {% endif %}
       </ul>
-    {% endif %}
+      {% endif %}
+    </div>
   </div>
-</div>
+</section>
 {% endblock %}
