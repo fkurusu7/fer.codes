@@ -23,7 +23,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique_for_date='publish_date') # Add to the slug the post author name
-    description = models.TextField()
+    content = models.TextField()
     summary = models.CharField(max_length=300)
     publish_date = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)

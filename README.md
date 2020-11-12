@@ -93,3 +93,8 @@ Install pip install pylint-django
     ],   <=== Remove error marks in Model.objects
     "terminal.integrated.fontSize": 14
 }
+
+# CKeditor
+
+Install Command Line Tools:
+    https://developer.apple.com/download/more/

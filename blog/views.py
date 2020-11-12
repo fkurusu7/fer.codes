@@ -24,7 +24,9 @@ def post_detail(request, post_id):
     context = { 'post': post, 'categories': categories }
     return render(request, 'blog/post_detail.html', context)
 
-
+def editor_test(request):
+    print(request.POST)
+    
 def add_post(request):
     print(request.POST)
     if request.method == 'POST':
@@ -36,7 +38,7 @@ def add_post(request):
         else:
             status = request.POST['status']
 
-        description = request.POST['description']
+        content = request.POST['content']
 
         # Categories
         categories = get_categories(request) 
@@ -49,13 +51,13 @@ def add_post(request):
         errors = ''
         if Post.objects.filter(title=title).exists():
             errors += '\nTitle is taken, pick another one.'
-        if not description:
-            errors += '\nDescription must not be empty'
+        if not content:
+            errors += '\nPost Content must not be empty'
         if not summary:
             errors += '\nSummary must not be empty'
 
         if not errors:
-            post = Post(title= title, description= description, summary= summary, status= status, main_photo=main_photo, photo_1= photo_1, photo_2= photo_2, photo_3= photo_3, photo_4= photo_4, photo_5= photo_5, photo_6= photo_6)
+            post = Post(title= title, content= content, summary= summary, status= status, main_photo=main_photo, photo_1= photo_1, photo_2= photo_2, photo_3= photo_3, photo_4= photo_4, photo_5= photo_5, photo_6= photo_6)
             post.save()
             post.categories.add(*categories)
 

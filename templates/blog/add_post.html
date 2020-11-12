@@ -14,7 +14,7 @@
       {% include 'partials/_alerts.html' %}
       <form action="{% url 'add_post' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        
+
         <div class="row my-3">
           <!-- Title -->
           <div class="col-md-5 text-center">
@@ -36,7 +36,7 @@
             <input type="checkbox" name="status" value="published" class="form-control">
           </div><!-- END Published -->
         </div>
-        
+
         <!-- Summary -->
         <div class="row my-3">
           <!-- Summary -->
@@ -53,7 +53,8 @@
           <!-- Category TextBox -->
           <div class="col-md-6">
             <div class="form-group">
-              <label for="summary">Categories <small class="text-light">  (Add new categories separated by commas or pick one to your right.)</small></label>
+              <label for="summary">Categories <small class="text-light"> (Add new categories separated by commas or pick
+                  one to your right.)</small></label>
               <!-- if categories is empty put the required element in the input otherwise the checkboxes should be required-->
               <input type="text" name="categories_comma" class="form-control">
             </div>
@@ -62,10 +63,11 @@
           <div class="col-md-6">
             <p class="mb-0">Preloaded Categories</p>
             {% for category in categories %}
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ category.id }}" name="category_checkbox" value="{{ category.name }}">
-                <label class="form-check-label" for="inlineCheckbox{{ category.id }}">{{ category.name }}</label>
-              </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ category.id }}"
+                name="category_checkbox" value="{{ category.name }}">
+              <label class="form-check-label" for="inlineCheckbox{{ category.id }}">{{ category.name }}</label>
+            </div>
             {% endfor %}
           </div>
         </div><!-- END Categories -->
@@ -134,12 +136,15 @@
               </div>
             </div>
           </div>
-        </div> <!-- END Accordion--><!-- END Photos 1-6 -->
+        </div> <!-- END Accordion-->
+        <!-- END Photos 1-6 -->
 
         <!-- Description -->
         <div class="form-group my-4">
-          <label for="description">Description</label>
-          <textarea name="description" id="description" cols="30" rows="15" class="form-control" required></textarea>
+          <label for="description">Post Content</label>
+          <textarea name="content" id="editor" cols="30" rows="15" class="form-control">
+            &lt;p&gt;Start your super Post.&lt;/p&gt;
+          </textarea>
         </div><!-- END Description -->
 
         <div class="row justify-content-md-center">
@@ -147,10 +152,9 @@
             <input type="submit" value="Post" class="btn btn-outline-warning btn-block text-center">
           </div>
         </div>
-        
+
       </form>
     </div>
   </div>
 </div>
 {% endblock %}
-

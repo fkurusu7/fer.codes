@@ -22,7 +22,7 @@ https://hakibenita.com/django-markdown
           <img src="{{ post.main_photo.url }}" class="figure-img img-fluid rounded" alt="...">
           <figcaption class="figure-caption">{{ post.summary }}</figcaption>
         </figure>
-        <p class="card-text text-justify py-3">{{ post.description }}</p>
+        <p class="card-text text-justify py-3">{{ post.content | safe }}</p>
         <a href="{% url 'posts' %}" class="btn bg-info text-white">Latest Posts</a>
       </div>
       <div class="card-footer text-muted">
