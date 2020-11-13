@@ -12,16 +12,16 @@ https://hakibenita.com/django-markdown
   <!-- Blog Detail-->
   <div class="col-sm-9">
 
-    <div class="card text-center mb-5">
+    <div class="card mb-5">
       <div class="card-header bg-dark text-white">
         <small class="text-light">{{ post.updated | date:"D d M Y" }}</small>
         <h3 class="pt-1 pb-3">{{ post.title }}</h3>
       </div>
       <div class="card-body">
-        <figure class="figure">
-          <img src="{{ post.main_photo.url }}" class="figure-img img-fluid rounded" alt="...">
+        <!--figure class="figure">
+          <img src="{{ post.main_photo.url }}" class="figure-img img-fluid rounded" alt="">
           <figcaption class="figure-caption">{{ post.summary }}</figcaption>
-        </figure>
+        </figure-->
         <p class="card-text text-justify py-3">{{ post.content | safe }}</p>
         <a href="{% url 'posts' %}" class="btn bg-info text-white">Latest Posts</a>
       </div>
