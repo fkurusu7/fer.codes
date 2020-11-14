@@ -3,20 +3,71 @@
 
 {% block content %}
 
-<div class="jumbotron">
-    <h1 class="display-5">Hello, I'm Fer!</h1>
+<div class="jumbotron bg-dark">
     <div class="row">
         <div class="col-8">
-            <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse, rerum officiis iste
-                consequatur et explicabo odio iusto saepe, alias fugiat culpa libero eum perferendis sint officia magni
-                quod, eveniet vitae.</p>
-            <!-- TODO: use modal for the Contact Form
-            https://getbootstrap.com/docs/4.5/components/modal/#varying-modal-content
-            -->
-            <a class="mt-3 btn btn-dark btn-lg" href="#" role="button">Let's talk</a>
+            <h1 class="display-5 text-warning mb-4">Hello, I'm Fer!</h1>
+            <p class="lead text-white">
+                I'm a back-end engineer from Mexico, working in New York City. I design, create and support websites and
+                applications for clients and for fun. I love using modern technology to create exceptional user
+                experiences, and always strive to create high quality products.
+            </p>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="mt-5 btn btn-danger btn-lg" data-toggle="modal" data-target="#contactModal">
+                Let's talk
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-warning" id="contactModalLabel">Contact</h5>
+                            <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                            </button>
+                        </div>
+                        <form action="" method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="name" class="text-warning">Name:</label>
+                                    <input type="text" class="form-control" name="name" id="name"
+                                        placeholder="Contact Name" required>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid name.
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="text-warning">Email: </label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        placeholder="Contact Email" required>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid email.
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message" class="text-warning">Message:</label>
+                                    <textarea class="form-control" name="name" id="message" rows="4"
+                                        placeholder="Send beer..." required></textarea>
+                                    <div class="invalid-feedback">
+                                        Please provide some message.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-outline-warning">Send message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div><!-- END Modal -->
         </div>
         <div class="col-4">
-            <img src="..." class="rounded mx-auto d-block img-fluid" alt="...">
+            <img src="{% static 'img/home_profile.jpg' %}" class="rounded mx-auto d-block img-fluid rounded-circle"
+                alt="Fer Profile Pic">
         </div>
     </div>
 </div>
