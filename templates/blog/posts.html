@@ -10,57 +10,35 @@
   {% include 'partials/_alerts.html' %}
 
   <!-- Title -->
-  <div class="row">
-    <h3 class="pb-3 mx-auto">Latest Posts</h3>
+  <div class="row my-5">
+    <h3 class="pb-3 mx-auto posts_list_font text-warning display-4">Latest Posts</h3>
   </div>
 
-  <!-- List of Posts -->
-  <!-- https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#std:templatefilter-date -->
-  <div class="row">
-    <div class="col-sm-9">
-      <div class="accordion" id="accordionPosts">
-
-        {% for post in posts %}
-        <div class="card">
-          <div class="card-header bg-dark" id="heading{{ post.id }}">
-            <h2 class="mb-0">
-              <button class="text-warning btn btn-link btn-block text-left text-decoration-none" type="button"
-                data-toggle="collapse" data-target="#collapse{{ post.id }}" aria-expanded="false"
-                aria-controls="collapse{{ post.id }}">
-                {{ post.title | capfirst }}
-                <span class="float-right">
-                  <small class="text-muted">Posted {{ post.created | naturaltime }} </small>
-                  <i class="fas fa-plus-circle"></i>
-                </span>
-              </button>
-            </h2>
-          </div>
-          <div id="collapse{{ post.id }}" class="collapse" aria-labelledby="heading{{ post.id }}"
-            data-parent="#accordionPosts">
-            <div class="card-body border">
-              <div class="row">
-                <div class="col-sm-10">
-                  <p>{{ post.summary }}</p>
-                </div>
-                <div class="col-sm-2">
-                  <a href="{% url 'post' post.id %}" class="float-right btn btn-warning btn-md text-dark"
-                    role="button"><i class="fab fa-readme"></i> Read more </a>
-                </div>
+  {% for month, posts in month_posts.items %}
+    <div class="row posts_list_font">
+      <div class="col-2">
+        <h3 class="striking-color">{{ month | capfirst }}</h3>
+      </div>
+      <div class="col-10">
+        <div class="container">
+          {% for post in posts %}
+            <div class="row mb-3 pb-2 text-center post_border">
+              <div class="col-12">
+                <a class="posts_list_font_color h5 anchor_hover" href="#">
+                  {{ post.title }} 
+                  <small class="text-muted float-right">
+                    {{ post.publish_date | date:"D d, P" }}
+                  </small>
+                </a>
               </div>
             </div>
-          </div>
-        </div> <!-- END CARD-->
-
-        {% endfor %}
-
-      </div> <!-- END Accordion -->
-    </div> <!-- END List of Posts -->
-
-    <!-- ADMIN(implement later) / ADD button / Tags-->
-    <div class="col-sm-3">
-      {% include 'partials/_sides.html' %}
+          {% endfor %}
+        </div>
+        </ul>
+      </div>
     </div>
-  </div>
+    </div>
+  {% endfor %}
 
   <!-- PAGINATION -->
   <div class="row">

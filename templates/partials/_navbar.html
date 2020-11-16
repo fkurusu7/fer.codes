@@ -1,9 +1,9 @@
 <header>
     <nav class="navbar navbar-expand-lg nav-font navbar-dark bg-dark py-3 mt-1">
-        <a class="navbar-brand" href="{% url 'index' %}">
-            <i class="fab fa-python text-danger"></i>&nbsp;
-            <span class="text-warning">
-                fer.codes&gt; <span class="blinking"></span>
+        <a class="navbar-brand " href="{% url 'index' %}">
+            <i class="fab fa-python striking-color"></i>&nbsp;
+            <span class="text-warning h3">
+                fer.codes&gt;&nbsp;<span class="blinking"></span>
             </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -11,27 +11,28 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline my-lg-0 ml-auto">
-                <div class="input-group input-group-lg input-group-sm">
-                    <div class="input-group-append">
-                        <button type="submit" class="input-group-text bg-warning" id="inputGroup-sizing-lg"><i
-                                class="fas fa-search"></i></button>
+            <form class="form-inline my-lg-0 mx-auto">
+                <div class="input-group">
+                    <div class="input-group-prepend border-warning">
+                        <button type="submit" class="input-group-text bg-warning" id="inputGroup-sizing-lg">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
-                    <input type="search" class="form-control border border-warning bg-dark text-white" aria-label="Search input"
+                    <input type="search" class="form-control border-warning bg-dark text-white" aria-label="Search input"
                         aria-describedby="inputGroup-sizing-lg" placeholder="Search tags, posts...">
                 </div>
             </form>
-            <ul class="navbar-nav nav nav-pills ml-auto">
+            <ul class="navbar-nav nav nav-pills float-right">
                 <li class="nav-item">
                     <a 
                     {% if 'blog' in request.path %} 
-                        class="nav-link bg-danger text-light btn btn-lg active" 
+                        class="nav-link striking-bg-color text-light btn btn-lg" 
                     {% else %}
                         class="nav-link text-warning btn btn-lg" 
                     {% endif %} 
                     href="{% url 'posts' %}">Blog</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ml-2">
                     <a 
                     {% if 'resume' in request.path %} 
                         class="nav-link bg-warning text-muted btn btn-lg active" 
@@ -39,6 +40,15 @@
                         class="nav-link text-warning btn btn-lg" 
                     {% endif %} 
                     href="#">Resumé</a>
+                </li>
+                <li class="nav-item ml-2">
+                    <a 
+                    {% if 'login' in request.path %} 
+                        class="nav-link bg-danger text-light btn btn-lg active" 
+                    {% else %}
+                        class="nav-link text-warning btn btn-lg" 
+                    {% endif %} 
+                    href="#">Log in</a>
                 </li>
             </ul>
         </div>

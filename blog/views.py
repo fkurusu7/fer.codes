@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 
+# Python
+from collections import defaultdict
+
 # Models
 from .models import Post, Category
 
@@ -13,8 +16,20 @@ def posts(request):
     page = request.GET.get('page')
     paged_posts = paginator.get_page(page)
 
+    # Categories
     categories = Category.objects.all()
-    context = {'posts': paged_posts, 'categories': categories }
+    
+    # Posts by month
+    month_posts = {}
+    for paged_post in paged_posts:
+        month = paged_post.publish_date.strftime('%B')
+        if not month in month_posts:
+            month_posts[month] = []
+            month_posts[month].append(paged_post)
+        else:
+            month_posts[month].append(paged_post)
+    
+    context = {'month_posts': month_posts, 'categories': categories }
     return render(request, 'blog/posts.html', context)
 
 
@@ -43,7 +58,7 @@ def add_post(request):
         content = request.POST['content']
 
         # Categories
-        categories = get_categories(request) 
+        categories = _get_categories(request) 
 
         # Thumbnail Photo
         if not request.FILES.get('thumbnail'):
@@ -76,7 +91,7 @@ def add_post(request):
         return render(request, 'blog/add_post.html', context)
 
   
-def get_categories(request):
+def _get_categories(request):
     # https://docs.djangoproject.com/en/3.1/topics/db/examples/many_to_many/
     # Categories from CHECKBOXES
     if not request.POST.get('category_checkbox'):

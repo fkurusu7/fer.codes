@@ -1,25 +1,47 @@
-
-
 /*
- 
-CSS rules to specify families
-
-    font-family: 'Cutive Mono', monospace;
-
-    font-family: 'Nova Mono', monospace;
-
-    font-family: 'Share Tech Mono', monospace;
+  font-family: 'Cutive Mono', monospace;
+  font-family: 'Nova Mono', monospace;
+  font-family: 'Share Tech Mono', monospace;
 */
 .nav-font{
   font-family: 'Share Tech Mono', monospace;
   font-weight: bold;
 }
 
-/* Blinking shell cursor in NavBrand */
+.index-font{
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.posts_list_font{
+  font-family: 'Nova Mono', monospace;
+}
+.posts_list_font_color{
+  color: #909395;
+}
+
+.striking-color{
+  color: #fe5186;
+}
+.striking-bg-color{
+  background-color: #fe5186;
+}
+
+/* posts.html */
+.post_border{
+  border-bottom: #ffc107 dotted 1px;
+}
+
+/* Links in each post in posts.html */
+.anchor_hover:hover{
+  color: #fe5186;
+  text-decoration: none;
+}
+
+/* Blinking shell cursor for NavBrand in partials/_navbar.html */
 .blinking {
   display: inline-block;
   width: 10px;
-  height: 1rem;
+  height: 1.3rem;
   background-color: #fe5186;
   -webkit-animation: blinking 1s infinite;
   animation: blinking 1s infinite;
@@ -36,4 +58,4 @@ CSS rules to specify families
       background-color: #fe5186;
   }
 }
-/* END Blinking shell cursor in NavBrand */
+/* END Blinking shell cursor for NavBrand */

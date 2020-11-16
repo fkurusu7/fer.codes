@@ -3,9 +3,9 @@
 
 {% block content %}
 
-<div class="jumbotron bg-dark">
+<div class="jumbotron bg-dark my-5">
     <div class="row">
-        <div class="col-8">
+        <div class="col-8 index-font">
             <h1 class="display-5 text-warning mb-4">Hello, I'm Fer!</h1>
             <p class="lead text-white">
                 I'm a back-end engineer from Mexico, working in New York City. I design, create and support websites and
@@ -14,7 +14,8 @@
             </p>
 
             <!-- Button trigger modal -->
-            <button type="button" class="mt-5 btn btn-danger btn-lg" data-toggle="modal" data-target="#contactModal">
+            <button type="button" class="mt-5 btn striking-bg-color text-light btn-lg" data-toggle="modal"
+                data-target="#contactModal">
                 Let's talk
             </button>
             <!-- Modal -->
@@ -72,30 +73,30 @@
     </div>
 </div>
 
-<div class="row">
-    <h3 class="text-center mt-2 py-5">What I do</h3>
-    <div class="card-group">
-        <div class="card">
+<div class="row mx-auto index-font">
+    <h3 class="text-center m-4 pb-3 striking-color">What I'm learning</h3>
+    <div class="card-group text-light mx-4">
+        <div class="card bg-dark border">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">PYTHON</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
                     content. This content is a little bit longer.</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
         </div>
-        <div class="card">
+        <div class="card bg-dark border">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">DJANGO</h5>
                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
         </div>
-        <div class="card">
+        <div class="card bg-dark border">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">FRONT-END</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
                     content. This card has even longer content than the first to show that equal height action.</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -103,15 +104,5 @@
         </div>
     </div>
 </div>
-<!--div class="container">
-    <img src="{% static 'img/landing_hero.jpg' %}" alt=""
-        title="https://unsplash.com/photos/Skf7HxARcoc?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink"
-        style="width:100%;">
-    <div class="bottom-left">Bottom Left</div>
-    <div class="top-left">Top Left</div>
-    <div class="top-right">Top Right</div>
-    <div class="bottom-right">Bottom Right</div>
-    <div class="centered">Centered</div>
-</div-->
 
 {% endblock %}
