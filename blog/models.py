@@ -21,15 +21,16 @@ class Post(models.Model):
 
     STATUS_CHOICES = (('draft', 'Draft'), ('published','Published'))
 
-    title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique_for_date='publish_date') # Add to the slug the post author name
+
+    title = models.CharField(max_length=200, unique=True)
     content = models.TextField()
-    summary = models.CharField(max_length=300)
+    status = models.CharField(max_length=10, default='draft', choices=STATUS_CHOICES)
+    thumbnail = models.ImageField(upload_to='blog/%Y/%m/%d/')
+
     publish_date = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=10, default='draft', choices=STATUS_CHOICES)
-    thumbnail = models.ImageField(upload_to='blog/%Y/%m/%d/')
 
     def __str__(self):
         return self.title

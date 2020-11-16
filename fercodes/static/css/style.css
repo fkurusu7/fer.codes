@@ -26,6 +26,26 @@
   background-color: #fe5186;
 }
 
+/* index.html modal button*/
+.btn-outlined{
+  transition-duration: 0.2s;
+}
+
+.btn-outlined:hover{
+  background-color: #343a40 !important;
+  border: #fe5186 solid 1px !important;
+  color: #fe5186 !important;
+}
+
+/* _navbar.html dropdown anchors */
+.dropdown-menu > a{
+  transition-duration: 0.4s;
+}
+.dropdown-menu > a:hover{
+  background-color: #fe5186;
+  color: #fff !important;
+}
+
 /* posts.html */
 .post_border{
   border-bottom: #ffc107 dotted 1px;

@@ -3,39 +3,23 @@
 {% load humanize %}
 
 {% block content %}
-<!-- TODO: handle in the future MarkDown and HTML
-https://hakibenita.com/django-markdown
--->
 
-<!-- TITLE and SEARCH BOX-->
-<div class="row">
+<div class="row mt-5">
   <!-- Blog Detail-->
-  <div class="col-sm-9">
-
-    <div class="card mb-5">
-      <div class="card-header bg-dark text-white">
-        <small class="text-light">{{ post.updated | date:"D d M Y" }}</small>
-        <h3 class="pt-1 pb-3">{{ post.title }}</h3>
-      </div>
-      <div class="card-body">
-        <!--figure class="figure">
-          <img src="{{ post.main_photo.url }}" class="figure-img img-fluid rounded" alt="">
-          <figcaption class="figure-caption">{{ post.summary }}</figcaption>
-        </figure-->
-        <p class="card-text text-justify py-3">{{ post.content | safe }}</p>
-        <a href="{% url 'posts' %}" class="btn bg-info text-white">Latest Posts</a>
-      </div>
-      <div class="card-footer text-muted">
-        CONTACT
-      </div>
+  <div class="col-12 index-font">
+    <div class="text-center">
+      <!-- Title -->
+      <h3 class="mt-2 py-3 text-center mx-auto posts_list_font text-warning display-4">
+        {{ post.title | title }}
+      </h3>
+      <!-- Categories -->
+      {% include 'partials/_categories_badges.html' %}  
     </div>
-
-  </div> <!-- END Blog Detail -->
-
-  <!-- ADMIN(implement later) / ADD button / Tags-->
-  <div class="col-sm-3">
-    {% include 'partials/_sides.html' %}
-  </div>
+    <div class="content text-light my-5">
+      {{ post.content | safe }}
+    </div>
+  </div>  
+  <!-- END Blog Detail -->
 </div>
 
 {% endblock %}

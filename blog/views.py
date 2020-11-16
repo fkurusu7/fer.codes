@@ -39,9 +39,11 @@ def post_detail(request, post_id):
     context = { 'post': post, 'categories': categories }
     return render(request, 'blog/post_detail.html', context)
 
+
 def editor_test(request):
     print(request.POST)
     
+
 def add_post(request):
     print(request.POST)
     if request.method == 'POST':

@@ -35,20 +35,23 @@
                 <li class="nav-item ml-2">
                     <a 
                     {% if 'resume' in request.path %} 
-                        class="nav-link bg-warning text-muted btn btn-lg active" 
+                        class="nav-link striking-bg-color text-light btn btn-lg" 
                     {% else %}
                         class="nav-link text-warning btn btn-lg" 
                     {% endif %} 
                     href="#">Resumé</a>
                 </li>
-                <li class="nav-item ml-2">
-                    <a 
-                    {% if 'login' in request.path %} 
-                        class="nav-link bg-danger text-light btn btn-lg active" 
-                    {% else %}
-                        class="nav-link text-warning btn btn-lg" 
-                    {% endif %} 
-                    href="#">Log in</a>
+                <li class="nav-item ml-2"> <!-- Modify once login functionality is done, so it'll have Login if not logged in or the dashboard otherwise -->
+                    <div class="dropdown">
+                        <button class="btn btn-outline-warning btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Admin
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right mt-1 p-0 bg-dark border border-warning" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item text-warning dropdown-link" href="#">Dashboard</a>
+                          <a class="dropdown-item text-warning" href="#">Add Post</a>
+                          <a class="dropdown-item text-warning" href="#">Log out</a>
+                        </div>
+                      </div>
                 </li>
             </ul>
         </div>

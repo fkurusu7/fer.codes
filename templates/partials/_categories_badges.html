@@ -1,0 +1,6 @@
+<div class="text-center mb-5">
+  <span class="striking-color"><i class="fas fa-tags"></i>&nbsp;</span>
+  {% for category in categories %}
+    <a href="#" class="badge badge-pill striking-bg-color text-light mx-1 py-2">{{ category.name | lower }}</a>
+  {% endfor %}
+</div>
