@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +43,14 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'fercodes.urls'
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-secondary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 TEMPLATES = [
     {
@@ -121,11 +130,3 @@ STATICFILES_DIRS = [
 # Media Files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-# Messages
-from django.contrib.messages import constants as messages
-
-MESSAGE_TAGS = {
-    messages.ERROR: 'danger',
-    messages.SUCCESS: 'dark'
-}

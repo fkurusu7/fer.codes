@@ -16,8 +16,7 @@
     <!-- Highlight (languages) -->
     <link rel="stylesheet"
         href="{% static 'ckeditor/ckeditor_4.15.1_full/plugins/codesnippet/lib/highlight/styles/monokai.css' %}">
-    <script
-        src="{% static 'ckeditor/ckeditor_4.15.1_full/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
+    <script src="{% static 'ckeditor/ckeditor_4.15.1_full/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <!-- END CKEditor -->
     <!-- Google FONTS -->
@@ -25,7 +24,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <!-- Title -->
-    <title>fer.codes | {% block title %}{% endblock %}</title>
+    <title>fer.codes {% block title %}{% endblock %}</title>
 </head>
 
 <body class="bg-dark">

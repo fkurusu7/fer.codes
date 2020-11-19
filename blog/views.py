@@ -2,9 +2,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
-
-# Python
-from collections import defaultdict
+from django.utils import timezone
 
 # Models
 from .models import Post, Category
@@ -35,64 +33,57 @@ def posts(request):
 
 def post_detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    categories = Category.objects.all()
+    categories = post.categories.all()
     context = { 'post': post, 'categories': categories }
     return render(request, 'blog/post_detail.html', context)
-
-
-def editor_test(request):
-    print(request.POST)
     
 
 def add_post(request):
-    print(request.POST)
     if request.method == 'POST':
-        # Get form values
-        title = request.POST['title']
-
-        summary = request.POST['summary']
-
-        if not request.POST.get('status'):
-            status = 'draft'
-        else:
-            status = request.POST['status']
-
-        content = request.POST['content']
-
-        # Categories
-        categories = _get_categories(request) 
-
-        # Thumbnail Photo
-        if not request.FILES.get('thumbnail'):
-            thumbnail = ""
-        else:
-            thumbnail = request.FILES['thumbnail']
-       
-        errors = ''
-        if Post.objects.filter(title=title).exists():
-            errors += '\nTitle is taken, pick another one.'
-        if not content:
-            errors += '\nPost Content must not be empty'
-        if not summary:
-            errors += '\nSummary must not be empty'
-
-        if not errors:
-            post = Post(title= title, content= content, summary= summary, status= status, thumbnail=thumbnail)
-            post.save()
-            post.categories.add(*categories)
-
-            messages.success(request, 'Post added.')
+        errors, is_valid = _save_post_is_valid(request)
+        if is_valid:
+            _save_post(request)
+            messages.success(request, ('Post edited.'))
             return redirect('posts')
-
         else:
             messages.error(request, errors)
             return redirect('add_post')
     else:
-        categories = Category.objects.all()
+        categories = Category.objects.all()[:10]
         context = { 'categories': categories }
         return render(request, 'blog/add_post.html', context)
 
-  
+
+# Validates Title and Content are not blank, and Title not existing in DB
+def _save_post_is_valid(request):
+    errors = ''
+    is_valid = True
+
+    if not request.POST.get('title'):
+        errors += '\nTitle cannot be blank. Please fix it.'
+        is_valid = False
+    if Post.objects.filter(title=request.POST.get('title')).exists():
+        errors += '\nTitle is taken, pick another one.'
+        is_valid = False
+    if not request.POST.get('content'):
+        errors += '\nPost Content must not be blank. Please write something interesting.'
+        is_valid = False
+    
+    return errors, is_valid
+
+
+def _save_post(request):
+    # Get form values
+    title = request.POST['title']
+    content = request.POST['content']
+    status = 'draft' if not request.POST.get('status') else request.POST['status']
+    thumbnail = "" if not request.FILES.get('thumbnail') else request.FILES['thumbnail']
+    categories = _get_categories(request) 
+    post = Post(title= title, content= content, status= status, thumbnail= thumbnail)
+    post.save()
+    post.categories.add(*categories)
+    
+
 def _get_categories(request):
     # https://docs.djangoproject.com/en/3.1/topics/db/examples/many_to_many/
     # Categories from CHECKBOXES
@@ -105,7 +96,7 @@ def _get_categories(request):
             cat = Category.objects.get(name= category)
             categories_checkbox.append(cat)
 
-    # Categories from TEXTBOXES (commas)
+    # Categories from TEXTBOX (commas)
     if not request.POST.get('categories_comma'):
         categories_comma = []
     else:
@@ -117,3 +108,58 @@ def _get_categories(request):
 
     categories = categories_checkbox + categories_comma 
     return categories
+
+
+def edit_post(request, post_id):
+    post = Post.objects.get(pk=post_id)
+    categories = Category.objects.all()
+    context = { 'post': post, 'categories': categories }
+    if request.method == 'POST':
+        errors, is_valid = _update_post_is_valid(request)
+        if is_valid:
+            _update_post(request, post)
+            messages.success(request, ('Post edited.'))
+            return redirect('posts')
+        else:
+            print(errors)
+            messages.error(request, (errors))
+            return render(request, 'blog/edit_post.html', {})
+    else:
+        return render(request, 'blog/edit_post.html', context)
+
+
+def _update_post_is_valid(request):
+    errors = ''
+    is_valid = True
+
+    if not request.POST.get('title'):
+        errors += '\nTitle cannot be blank. Please fix it.'
+        is_valid = False
+    if not request.POST.get('content'):
+        errors += '\nPost Content must not be blank. Please write something... interesting.'
+        is_valid = False
+    
+    return errors, is_valid
+
+
+def _update_post(request, post):
+    # Get form values
+    title = request.POST['title']
+    content = request.POST['content']
+    status = 'draft' if not request.POST.get('status') else request.POST['status']
+    publish_date = post.publish_date
+    if status == 'published':
+        publish_date = timezone.now()
+    thumbnail = "" if not request.FILES.get('thumbnail') else request.FILES['thumbnail']
+    categories = _get_categories(request)
+    
+    post.title = title
+    post.content = content
+    post.status = status
+    post.thumbnail = thumbnail
+    post.publish_date = publish_date
+    post.save(force_update=True)
+    
+    post.categories.clear()
+    post.categories.add(*categories)
+    

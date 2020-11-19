@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
-
 {% load humanize %}
+
+{% block title %} | Latest Posts {% endblock %}
+
 {% block content %}
 
 <section class="container">
@@ -28,7 +30,8 @@
               <div class="col-12">
                 <a class="posts_list_font_color h5 anchor_hover" href="{% url 'post' post.id %}">
                   {{ post.title }} 
-                  <small class="text-muted float-right">
+                  <a href="{% url 'edit_post' post.id %}" class="float-right btn btn-sm striking-bg-color text-light btn-lg btn-outlined">Edit</a>
+                  <small class="mx-4 text-muted float-right">
                     {{ post.publish_date | date:"D d, P" }}
                   </small>
                 </a>
