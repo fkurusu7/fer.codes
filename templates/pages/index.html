@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-8 index-font">
             <h1 class="display-5 text-warning mb-4">Hello, I'm Fer!</h1>
-            <p class="lead text-white">
+            <p class="lead main_font">
                 I'm a back-end engineer from Mexico, working in New York City. I design, create and support websites and
                 applications for clients and for fun. I love using modern technology to create exceptional user
                 experiences, and always strive to create high quality products.
@@ -49,9 +49,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="message" class="text-warning">Message:</label>
-                                    <textarea class="form-control" name="name" id="message" rows="4"
-                                        placeholder="Send beer..." required></textarea>
+                                    <label for="contact_message" class="text-warning">Message:</label>
+                                    <textarea class="form-control" name="name" id="contact_message" rows="4" placeholder="Send beer... I'll get back to you ASAP" required></textarea>
                                     <div class="invalid-feedback">
                                         Please provide some message.
                                     </div>
@@ -73,33 +72,54 @@
     </div>
 </div>
 
-<div class="row mx-auto index-font">
-    <h3 class="text-center m-4 pb-3 striking-color">What I'm learning</h3>
+<div class="row mx-auto index-font mb-5">
+    <h3 class="text-center m-4 pb-3 text-warning">What I'm learning</h3>
     <div class="card-group text-light mx-4">
-        <div class="card bg-dark border">
-            <img src="..." class="card-img-top" alt="...">
+        <div class="card bg-dark mr-3 border-dark">
+            <figure class="figure">
+                <img src="{% static 'img/python_chris-ried-ieic5Tq8YMk-unsplash.jpg' %}" class="figure-img img-fluid rounded" alt="Python code, image from unsplash.">
+                <figcaption class="figure-caption">
+                    Photo by 
+                    <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="text-muted text-decoration-none">Chris Ried</a> 
+                    on 
+                    <a href="https://unsplash.com/s/photos/backend-django?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="text-muted text-decoration-none">Unsplash</a>
+                </figcaption>
+            </figure>
             <div class="card-body">
-                <h5 class="card-title">PYTHON</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title striking-color">PYTHON</h5>
+                <p class="card-text main_font">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
         </div>
-        <div class="card bg-dark border">
-            <img src="..." class="card-img-top" alt="...">
+        <div class="card bg-dark mr-3 border-dark">
+            <figure class="figure">
+                <img src="{% static 'img/backend_joshua-woroniecki-lzh3hPtJz9c-unsplash.jpg' %}" class="figure-img img-fluid rounded" alt="Backend, laptop, image from unsplash.">
+
+                <figcaption class="figure-caption">
+                    Photo by 
+                    <a href="https://unsplash.com/@joshua_j_woroniecki?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="text-muted text-decoration-none">Joshua Woroniecki</a> 
+                    on 
+                    <a href="https://unsplash.com/s/photos/backend-code?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="text-muted text-decoration-none">Unsplash</a>
+                </figcaption>
+            </figure>
             <div class="card-body">
-                <h5 class="card-title">DJANGO</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title striking-color">Backend with DJANGO</h5>
+                <p class="card-text main_font">This card has supporting text below as a natural lead-in to additional content.</p>
             </div>
         </div>
-        <div class="card bg-dark border">
-            <img src="..." class="card-img-top" alt="...">
+        <div class="card bg-dark border-dark">
+            <figure class="figure">
+                <img src="{% static 'img/frontend_valery-sysoev-p9OkL4yW3C8-unsplash.jpg' %}" class="figure-img img-fluid rounded" alt="Frontend, image from unsplash.">
+                <figcaption class="figure-caption">
+                    Photo by 
+                    <a href="https://unsplash.com/@valerysysoev?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="text-muted text-decoration-none">Valery Sysoev</a> 
+                    on 
+                    <a href="https://unsplash.com/s/photos/html?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="text-muted text-decoration-none">Unsplash</a>
+                </figcaption>
+            </figure>
+
             <div class="card-body">
-                <h5 class="card-title">FRONT-END</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This card has even longer content than the first to show that equal height action.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title striking-color">Frontend HTML/CSS/JS</h5>
+                <p class="card-text main_font">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
             </div>
         </div>
     </div>

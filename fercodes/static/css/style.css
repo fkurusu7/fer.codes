@@ -19,6 +19,13 @@
   color: #909395;
 }
 
+.main_font{
+  color: #909395;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
 .striking-color{
   color: #fe5186;
 }
