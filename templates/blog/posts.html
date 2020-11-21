@@ -31,7 +31,9 @@
                 <a class="h5 posts-list-anchor" href="{% url 'post' post.id %}">
                   {{ post.title }} 
                 </a>
-                <a href="{% url 'edit_post' post.id %}" class="float-right btn btn-sm posts-bg">Edit</a>
+                {% if user.is_authenticated %}
+                  <a href="{% url 'edit_post' post.id %}" class="float-right btn btn-sm posts-bg">Edit</a>
+                {% endif %}
                 <small class="mx-4 text-muted float-right">
                   {{ post.publish_date | date:"D d, P" }}
                 </small>

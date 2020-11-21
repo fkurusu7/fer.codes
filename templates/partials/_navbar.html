@@ -42,17 +42,64 @@
                     {% endif %} 
                     href="#">Resumé</a>
                 </li>
-                <li class="nav-item ml-2"> <!-- Modify once login functionality is done, so it'll have Login if not logged in or the dashboard otherwise -->
-                    <div class="dropdown">
-                        <button class="btn nav-selected-bg-color-outline btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Admin
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right mt-1 p-0 bg-dark" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item nav-font-color dropdown-link" href="#">Dashboard</a>
-                          <a class="dropdown-item nav-font-color dropdown-link" href="{% url 'add_post' %}">Add Post</a>
-                          <a class="dropdown-item nav-font-color dropdown-link" href="#">Log out</a>
+                <li class="nav-item ml-2">
+                    {% if user.is_authenticated %}
+                        <div class="dropdown">
+                            <button class="btn nav-selected-bg-color-outline btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right mt-1 p-0 bg-dark" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item nav-font-color dropdown-link" href="#">Dashboard</a>
+                            <a class="dropdown-item nav-font-color dropdown-link" href="{% url 'add_post' %}">Add Post</a>
+                            <a class="dropdown-item nav-font-color dropdown-link" href="{% url 'logout' %}">Log out</a>
+                            </div>
                         </div>
-                      </div>
+                    {% else %}
+                        <!-- Button trigger modal -->
+                        <a href="#" class="nav-link nav-font-color-a btn btn-lg" data-toggle="modal" data-target="#loginModal">Log in</a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content bg-dark">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title index-title" id="loginModalLabel">Log in</h5>
+                                        <button type="button" class="close index-text-color" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                                        </button>
+                                    </div>
+                                    <form action="{% url 'login' %}" method="POST" class="needs-validation" novalidate>
+                                        {% csrf_token %}
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="username" class="index-title">Username:</label>
+                                                <input type="password" class="form-control" name="username" id="username"
+                                                    placeholder="username" required>
+                                                <div class="invalid-feedback">
+                                                    Please provide your username.
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password" class="index-title">Password: </label>
+                                                <input type="password" class="form-control" name="password" id="password"
+                                                    placeholder="········" required>
+                                                <div class="invalid-feedback">
+                                                    Please provide your password.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-outline-warning">Log in</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- END Modal -->
+                    {% endif %}
+                </li>
+                <li class="nav-item ml-2"> <!-- Modify once login functionality is done, so it'll have Login if not logged in or the dashboard otherwise -->
+                    
                 </li>
             </ul>
         </div>
