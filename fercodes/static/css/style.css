@@ -3,6 +3,8 @@
   font-family: 'Nova Mono', monospace;
   font-family: 'Share Tech Mono', monospace;
 */
+
+/* FONTS */
 .nav-font{
   font-family: 'Share Tech Mono', monospace;
   font-weight: bold;
@@ -15,12 +17,94 @@
 .posts_list_font{
   font-family: 'Nova Mono', monospace;
 }
-.posts_list_font_color{
-  color: #909395;
+
+/* NAVBAR */
+.nav-font-bg-color{
+  background-color: #FF8947;
+}
+.nav-font-color{
+  color: #FF8947 !important;
 }
 
-.main_font{
+.nav-selected-bg-color{
+  background-color: #FF8947;
+  color: #343a40 !important;
+}
+
+.nav-selected-bg-color-outline{
+  border: #FF8947 solid 1px;
+  background-color: #343a40 !important;
+  color: #FF8947 !important;
+}
+.nav-selected-bg-color-outline:hover{
+  background-color: #FF8947 !important;
+  color: #343a40 !important;
+}
+
+.search-box{
+  border: #FF8947 solid 1px;
+}
+.search-box:focus{
+  border: #FF8947 solid 1px;
+}
+.search-box-bg{
+  background-color: #FF8947;
+  color: #343a40;
+}
+
+.dropdown-menu{
+  border: #FF8947 solid 1px;
+}
+/* _navbar.html dropdown anchors */
+.dropdown-menu > a{
+  transition-duration: 0.4s;
+}
+.dropdown-menu > a:hover{
+  background-color: #FF8947;
+  color: #343a40 !important;
+}
+
+/* END NAVBAR */
+
+/* INDEX */
+.index-title{
+  color: #FF8947;
+}
+
+.index-text-color{
+  color: #C8C9CA;
+}
+
+.lets-talk-button{
+  background-color: #FE5186;
+  color: #FFFFFF;
+  transition-duration: 0.2s;
+}
+
+.lets-talk-button:hover{
+  background-color: #343a40 !important;
+  border: #fe5186 solid 1px !important;
+  color: #fe5186 !important;
+}
+
+.lets-talk-modal-btn{
+  background-color: #343a40;
+  border: #FF8947 solid 1px;
+  color: #FF8947;
+}
+
+.lets-talk-modal-btn:hover{
+  background-color: #FF8947;
+  color: #343a40 !important;
+}
+
+/* END INDEX */
+
+.title-font-posts{
   color: #909395;
+}
+.main-font-posts{
+  color: #C8C9CA;
   font-size: 1.2rem;
   font-weight: 500;
   line-height: 1.6;
@@ -28,29 +112,6 @@
 
 .striking-color{
   color: #fe5186;
-}
-.striking-bg-color{
-  background-color: #fe5186;
-}
-
-/* index.html modal button*/
-.btn-outlined{
-  transition-duration: 0.2s;
-}
-
-.btn-outlined:hover{
-  background-color: #343a40 !important;
-  border: #fe5186 solid 1px !important;
-  color: #fe5186 !important;
-}
-
-/* _navbar.html dropdown anchors */
-.dropdown-menu > a{
-  transition-duration: 0.4s;
-}
-.dropdown-menu > a:hover{
-  background-color: #fe5186;
-  color: #fff !important;
 }
 
 /* posts.html */
