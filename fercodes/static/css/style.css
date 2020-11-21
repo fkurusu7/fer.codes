@@ -25,12 +25,25 @@
 .nav-font-color{
   color: #FF8947 !important;
 }
+.nav-font-color:hover{
+  color: #FE5186 !important;
+}
+
+.nav-font-color-a{
+  color: #FF8947 !important;
+}
+
+.nav-font-color-a:hover{
+  background-color: #FF8947 !important;
+  color: #343a40 !important;
+}
 
 .nav-selected-bg-color{
   background-color: #FF8947;
   color: #343a40 !important;
 }
 
+/* Dropdpwn */
 .nav-selected-bg-color-outline{
   border: #FF8947 solid 1px;
   background-color: #343a40 !important;
@@ -100,23 +113,41 @@
 
 /* END INDEX */
 
-.title-font-posts{
-  color: #909395;
-}
-.main-font-posts{
-  color: #C8C9CA;
-  font-size: 1.2rem;
-  font-weight: 500;
-  line-height: 1.6;
-}
-
 .striking-color{
   color: #fe5186;
 }
 
+.striking-bg-color{
+  background-color: #fe5186;
+  color: #343a40;
+}
+
 /* posts.html */
+
+.posts-tags{
+  color: #ff6d67;
+}
+.posts-bg{
+  background-color: #343a40;
+  border: #ff6d67 solid 0.5px;
+  color: #ff6d67 !important;
+}
+.posts-bg:hover{
+  background-color: #ff6d67;
+  color: aliceblue !important;
+  text-decoration: none;
+}
+
+.posts-list-anchor{
+  color: #C8C9CA;
+}
+.posts-list-anchor:hover{
+  color: #fe5186;
+  text-decoration: none;
+}
+
 .post_border{
-  border-bottom: #ffc107 dotted 1px;
+  border-bottom: #FF8947 dotted 1px;
 }
 
 /* Links in each post in posts.html */
@@ -124,6 +155,29 @@
   color: #fe5186;
   text-decoration: none;
 }
+
+/* END posts.html */
+
+/* post-detail */
+.title-post{
+  color: #C8C9CA;
+}
+.main-post{
+  color: #C8C9CA;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.main-post > pre{
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  font-size: .9rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+/* END post-detail */
 
 /* Blinking shell cursor for NavBrand in partials/_navbar.html */
 .blinking {
