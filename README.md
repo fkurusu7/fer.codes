@@ -135,7 +135,7 @@ in settings.py
             SECRET_KEY = 'VALUE copied'   ---> that's it
 
             Back in settings.py Change SECRET_KEY as follows:
-                - move the secret_key value to a environmental variable file, and this file will be hidden from GIT.
+                - move the secret_key value to an environmental variable file, and this file will be hidden from GIT.
                 - in main directory from terminal:
                     $ touch .env
                     copy the SECRET_KEY and value and paste it into .env file 

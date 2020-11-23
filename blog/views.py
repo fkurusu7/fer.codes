@@ -20,7 +20,7 @@ def posts(request):
     # Posts by month
     month_posts = {}
     for paged_post in paged_posts:
-        month = paged_post.publish_date.strftime('%B')
+        month = paged_post.publish_date.strftime('%Y %B')
         if not month in month_posts:
             month_posts[month] = []
             month_posts[month].append(paged_post)
@@ -125,6 +125,7 @@ def edit_post(request, post_id):
             messages.error(request, (errors))
             return render(request, 'blog/edit_post.html', {})
     else:
+        print(post.categories.all())
         return render(request, 'blog/edit_post.html', context)
 
 
