@@ -39,7 +39,7 @@
           <!-- Published -->
           <div class="col-md-2 text-center">
             <label for="status" class="pl-3">Published</label>
-            <input type="checkbox" name="status" value="published" class="form-control" {% if article.status == 'published' %} checked {% endif %}>
+            <input type="checkbox" name="status" value="published" class="form-control" {% if post.status == 'published' %} checked {% endif %}>
           </div><!-- END Published -->
         </div>
 
@@ -62,7 +62,11 @@
             <p class="mb-1">Preloaded Categories</p>
             {% for category in categories %}
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ category.id }}" name="category_checkbox" value="{{ category.name }}">
+                {% if category in post.categories.all %}
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ category.id }}" name="category_checkbox" value="{{ category.name }}" checked>
+                {% else %}
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ category.id }}" name="category_checkbox" value="{{ category.name }}">
+                {% endif %}
                 <label class="form-check-label" for="inlineCheckbox{{ category.id }}">
                   {{ category.name }}
                 </label>

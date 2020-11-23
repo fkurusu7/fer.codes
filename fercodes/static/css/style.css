@@ -122,6 +122,15 @@
   color: #343a40;
 }
 
+/* footer */
+.linkedin{
+  color: #fe5186;
+}
+.linkedin:hover{
+  color: #FF8947;
+  text-decoration: none;
+}
+
 /* posts.html */
 
 .posts-tags{
