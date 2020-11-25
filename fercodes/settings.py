@@ -83,14 +83,13 @@ WSGI_APPLICATION = 'fercodes.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fercodesdb',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
     }
 }
+DATABASES['default'] = dj_database_url.config(default='postgres://huyjtmdalycmpj:99d0150b707eeceaf3577a0fd93df00c7fa904201716a157287016815ccb86c4@ec2-54-166-114-48.compute-1.amazonaws.com:5432/db5sf743kp7unb')
 
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
